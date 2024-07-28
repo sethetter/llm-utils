@@ -4,9 +4,9 @@ import { Value } from "@sinclair/typebox/value";
 const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY");
 const ANTHROPIC_URL = "https://api.anthropic.com";
 
-class AnthropicError extends Error {}
+export class AnthropicError extends Error {}
 
-interface LlmTool {
+export interface LlmTool {
   name: string;
   description: string;
   input_schema: TSchema;
@@ -16,6 +16,7 @@ interface LlmTool {
  * Extracts data from content using a tool from the LLM.
  *
  * @example
+ * ```
  * const extractDataFromContent = {
  *   name: "save_data_from_article_content",
  *   description: "Saves data from the content of an article in the expected input format.",
@@ -30,6 +31,7 @@ interface LlmTool {
  *
  * const data = await useTool(articleContent, extractDataFromContent);
  * console.log(`${data.article_slug}: ${data.article_title} by ${data.article_author}`);
+ * ```
  */
 export async function useTool<TTool extends LlmTool = LlmTool>(
   content: string,
