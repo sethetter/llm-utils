@@ -1,4 +1,4 @@
-import { type TSchema, Type, type Static } from "@sinclair/typebox";
+import { Type } from "@sinclair/typebox";
 import { Value } from "@sinclair/typebox/value";
 
 const FIRECRAWL_SCRAPE_URL = "https://api.firecrawl.dev/v0/scrape";
@@ -6,13 +6,12 @@ const FIRECRAWL_API_KEY = Deno.env.get("FIRECRAWL_API_KEY");
 
 export class FirecrawlError extends Error {}
 
-const ScrapeResponseSchema: TSchema = Type.Object({
-  success: Type.Boolean(),
-  data: Type.Object({
-    markdown: Type.String(),
-  }),
-});
-type ScrapeResponse = Static<typeof ScrapeResponseSchema>;
+export interface ScrapeResponse {
+  success: boolean;
+  data: {
+    markdown: string;
+  };
+}
 
 export async function getUrlContent(url: string): Promise<ScrapeResponse> {
   const resp = await fetch(FIRECRAWL_SCRAPE_URL, {
@@ -31,6 +30,13 @@ export async function getUrlContent(url: string): Promise<ScrapeResponse> {
   }
 
   const respJson = await resp.json();
+
+  const ScrapeResponseSchema = Type.Object({
+    success: Type.Boolean(),
+    data: Type.Object({
+      markdown: Type.String(),
+    }),
+  });
 
   if (!Value.Check(ScrapeResponseSchema, respJson)) {
     const errors = [...Value.Errors(ScrapeResponseSchema, respJson)];
