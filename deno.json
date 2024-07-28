@@ -1,8 +1,8 @@
 {
   "name": "@seth/llm-utils",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "exports": {
-    "./mod.ts": "./mod.ts"
+    ".": "./mod.ts"
   },
   "tasks": {
     "cache": "deno cache mod.ts"

@@ -44,7 +44,7 @@ export interface LlmTool {
  */
 export async function useTool<TTool extends LlmTool = LlmTool>(
   content: string,
-  tool: TTool,
+  tool: TTool
 ): Promise<Static<TTool["input_schema"]>> {
   const resp = await fetch(`${ANTHROPIC_URL}/v1/messages`, {
     method: "POST",
@@ -91,7 +91,7 @@ export async function useTool<TTool extends LlmTool = LlmTool>(
         name: Type.String(),
         input: tool.input_schema,
       }),
-      { minItems: 1, maxItems: 1 },
+      { minItems: 1, maxItems: 1 }
     ),
   });
 
