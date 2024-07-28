@@ -1,0 +1,20 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "npm:@sinclair/typebox@^0.32.35": "npm:@sinclair/typebox@0.32.35"
+    },
+    "npm": {
+      "@sinclair/typebox@0.32.35": {
+        "integrity": "sha512-Ul3YyOTU++to8cgNkttakC0dWvpERr6RYoHO2W47DLbFvrwBDJUY31B1sImH6JZSYc4Kt4PyHtoPNu+vL2r2dA==",
+        "dependencies": {}
+      }
+    }
+  },
+  "remote": {},
+  "workspace": {
+    "dependencies": [
+      "npm:@sinclair/typebox@^0.32.35"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@seth/llm-utils",
+  "version": "0.0.1",
+  "exports": {
+    "./mod.ts": "./mod.ts"
+  },
+  "tasks": {
+    "cache": "deno cache mod.ts"
+  },
+  "imports": {
+    "@sinclair/typebox": "npm:@sinclair/typebox@^0.32.35"
+  }
+}
