@@ -16,6 +16,8 @@ export interface LlmTool {
  * Extracts data from content using a tool from the LLM.
  *
  * @example
+ * Extracting data from a string of article content.
+ *
  * ```
  * const extractDataFromContent = {
  *   name: "save_data_from_article_content",
