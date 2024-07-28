@@ -6,6 +6,14 @@ const ANTHROPIC_URL = "https://api.anthropic.com";
 
 export class AnthropicError extends Error {}
 
+/**
+ * A tool provided to the LLM to extract data from content.
+ *
+ * @interface
+ * @property {string} name - The name of the tool provided to the LLM. Something descriptive to help the LLM understand what the tool does.
+ * @property {string} description - A more detailed description of what the tool does.
+ * @property {TSchema} input_schema - A TypeBox schema for the structure of input you want back.
+ */
 export interface LlmTool {
   name: string;
   description: string;
