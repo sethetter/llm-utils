@@ -9,7 +9,6 @@ export class AnthropicError extends Error {}
 /**
  * A tool provided to the LLM to extract data from content.
  *
- * @interface
  * @property {string} name - The name of the tool provided to the LLM. Something descriptive to help the LLM understand what the tool does.
  * @property {string} description - A more detailed description of what the tool does.
  * @property {TSchema} input_schema - A TypeBox schema for the structure of input you want back.
@@ -45,7 +44,7 @@ export interface LlmTool {
  */
 export async function useTool<TTool extends LlmTool = LlmTool>(
   content: string,
-  tool: TTool
+  tool: TTool,
 ): Promise<Static<TTool["input_schema"]>> {
   const resp = await fetch(`${ANTHROPIC_URL}/v1/messages`, {
     method: "POST",
@@ -92,7 +91,7 @@ export async function useTool<TTool extends LlmTool = LlmTool>(
         name: Type.String(),
         input: tool.input_schema,
       }),
-      { minItems: 1, maxItems: 1 }
+      { minItems: 1, maxItems: 1 },
     ),
   });
 
